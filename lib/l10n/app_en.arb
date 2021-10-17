@@ -6,5 +6,7 @@
 
   "searchPrompt": "Search artists",
   "searchForName": "Search for artists by name",
-  "noSearchResults": "No matching artists"
+  "noSearchResults": "No matching artists",
+
+  "artistBio": "Bio"
 }

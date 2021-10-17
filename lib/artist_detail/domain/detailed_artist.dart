@@ -1,4 +1,5 @@
 import 'package:flutter_fm/core/domain/converter_utils.dart';
+import 'package:flutter_fm/core/domain/lastfm_image.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'detailed_artist.freezed.dart';
@@ -13,6 +14,7 @@ class DetailedArtist with _$DetailedArtist {
     required ArtistStats stats,
     required ArtistBio bio,
     required ArtistTags tags,
+    required List<LastFMImage> image,
     @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
     @JsonKey(fromJson: ConverterUtils.parseBool) required bool ontour,
   }) = _DetailedArtist;
