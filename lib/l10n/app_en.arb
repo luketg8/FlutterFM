@@ -1,5 +1,9 @@
 {
   "appTitle": "Flutter FM",
+
+  "errorsDefault": "An error occurred",
+  "errorsNoConnection": "No connection",
+
   "searchPrompt": "Search artists",
   "searchForName": "Search for artists by name",
   "noSearchResults": "No matching artists"

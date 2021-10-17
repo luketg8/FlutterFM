@@ -12,12 +12,22 @@ class SearchNotifier extends StateNotifier<AsyncValue<SearchResults>?> {
       : _searchRepository = read(searchRepositoryProvider),
         super(null);
 
-  Future<void> search(String name) async {
-    state =
-        AsyncValue.loading(previous: state is AsyncData ? state!.asData : null);
+  AsyncValue<SearchResults>? _latestResults;
 
-    state = await AsyncValue.guard(
-      () async => _searchRepository.search(name),
-    );
+  Future<void> search(String name) async {
+    state = AsyncValue.loading();
+
+    try {
+      final results = await _searchRepository.search(name);
+
+      _latestResults = AsyncValue.data(results);
+
+      state = _latestResults;
+    } catch (e) {
+      state = AsyncValue.error(
+        e,
+        previous: _latestResults != null ? _latestResults!.asData : null,
+      );
+    }
   }
 }

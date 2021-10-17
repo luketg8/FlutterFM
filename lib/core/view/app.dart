@@ -24,6 +24,11 @@ class FlutterFMApp extends StatelessWidget {
         ),
         primaryColor: FlutterFMColors.lastFmRed,
         scaffoldBackgroundColor: Colors.white,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(),
+          focusedBorder: OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(),
+        ),
       ),
       home: SearchScreen(),
     );
