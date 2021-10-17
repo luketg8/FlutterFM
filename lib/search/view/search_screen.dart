@@ -44,11 +44,8 @@ class SearchScreen extends ConsumerWidget {
       body: Column(
         children: [
           SizedBox(height: 15),
-          TextField(
-            decoration: InputDecoration(
-              hintText: context.strings.searchPrompt,
-            ),
-            onSubmitted: (term) => searchNotifier.search(term),
+          SearchBar(
+            onSearched: (term) => searchNotifier.search(term),
           ),
           Expanded(
             child: Builder(
@@ -113,6 +110,7 @@ class _SearchResults extends StatelessWidget {
               builder: (_) => ArtistDetailScreen(artist.name),
             ),
           ),
+          leading: Icon(Icons.music_note),
           title: Text(artist.name),
         );
       },
