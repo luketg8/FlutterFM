@@ -6,7 +6,4 @@ class SearchState with _$SearchState {
     required List<SimpleArtist> artists,
     @Default(false) bool nextPageAvailable,
   }) = _SearchState;
-
-  factory SearchState.fromJson(Map<String, dynamic> json) =>
-      _$SearchStateFromJson(json);
 }

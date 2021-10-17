@@ -5,6 +5,7 @@ import 'package:flutter_fm/core/view/context_extensions.dart';
 
 class SearchBar extends StatefulWidget {
   final Function(String) onSearched;
+
   const SearchBar({
     Key? key,
     required this.onSearched,
@@ -38,6 +39,7 @@ class _SearchBarState extends State<SearchBar> {
     return TextField(
       controller: _controller,
       decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search_rounded),
         hintText: context.strings.searchPrompt,
       ),
       onSubmitted: (term) => widget.onSearched(term),

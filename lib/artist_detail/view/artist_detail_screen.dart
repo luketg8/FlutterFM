@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
+import 'package:flutter_fm/core/view/error_message_utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ArtistDetailScreen extends ConsumerStatefulWidget {
-  final String artistName;
-  const ArtistDetailScreen(this.artistName, {Key? key}) : super(key: key);
+  final String mbid;
+  const ArtistDetailScreen(this.mbid, {Key? key}) : super(key: key);
 
   @override
   _ArtistDetailScreenState createState() => _ArtistDetailScreenState();
@@ -13,9 +14,7 @@ class ArtistDetailScreen extends ConsumerStatefulWidget {
 class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
   @override
   void initState() {
-    ref
-        .read(artistDetailNotifierProvider.notifier)
-        .fetchDetails(widget.artistName);
+    ref.read(artistDetailNotifierProvider.notifier).fetchDetails(widget.mbid);
 
     super.initState();
   }
@@ -30,8 +29,12 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
       data: (artist) => Center(
         child: ArtistDetails(artist),
       ),
-      error: (e, _, details) => Center(
-        child: Text('Error'),
+      error: (e, _, details) => Scaffold(
+        body: Center(
+          child: Text(
+            ErrorMessageUtils.resolveErrorMessage(context, e),
+          ),
+        ),
       ),
       loading: (details) {
         //

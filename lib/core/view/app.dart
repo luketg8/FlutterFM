@@ -24,13 +24,13 @@ class FlutterFMApp extends StatelessWidget {
         ),
         primaryColor: FlutterFMColors.lastFmRed,
         scaffoldBackgroundColor: Colors.white,
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
           focusedBorder: OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(),
         ),
       ),
-      home: SearchScreen(),
+      home: const SearchScreen(),
     );
   }
 }

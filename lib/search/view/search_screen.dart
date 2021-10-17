@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fm/artist_detail/artist_detail.dart';
 import 'package:flutter_fm/core/view/context_extensions.dart';
 import 'package:flutter_fm/core/view/error_message_utils.dart';
 import 'package:flutter_fm/search/search.dart';
@@ -65,14 +64,14 @@ class SearchScreen extends ConsumerWidget {
                       );
                     }
 
-                    return _SearchResults(
+                    return SearchResultsList(
                       results,
                       onNextPageRequested: () => searchNotifier.fetchNextPage(),
                     );
                   },
                   error: (e, __, results) {
                     if (results != null) {
-                      return _SearchResults(
+                      return SearchResultsList(
                         results.asData!.value,
                         onNextPageRequested: () =>
                             searchNotifier.fetchNextPage(),
@@ -86,7 +85,7 @@ class SearchScreen extends ConsumerWidget {
                       ),
                     );
                   },
-                  loading: (_) => Center(
+                  loading: (_) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                 );
@@ -96,73 +95,5 @@ class SearchScreen extends ConsumerWidget {
         ],
       ),
     );
-  }
-}
-
-class _SearchResults extends StatefulWidget {
-  final SearchState _searchResults;
-  final VoidCallback onNextPageRequested;
-
-  const _SearchResults(
-    this._searchResults, {
-    Key? key,
-    required this.onNextPageRequested,
-  }) : super(key: key);
-
-  @override
-  __SearchResultsState createState() => __SearchResultsState();
-}
-
-class __SearchResultsState extends State<_SearchResults> {
-  final ScrollController _controller = ScrollController();
-
-  @override
-  void initState() {
-    _controller.addListener(_paginationListener);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.removeListener(_paginationListener);
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      controller: _controller,
-      itemCount: widget._searchResults.artists.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 15),
-      itemBuilder: (context, idx) {
-        //TODO: Pagination support
-
-        final artist = widget._searchResults.artists[idx];
-
-        return ListTile(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => ArtistDetailScreen(artist.name),
-            ),
-          ),
-          leading: const Icon(Icons.music_note),
-          title: Text(artist.name),
-        );
-      },
-    );
-  }
-
-  void _paginationListener() {
-    if (!_controller.hasClients || !widget._searchResults.nextPageAvailable) {
-      return;
-    }
-
-    final maxScroll = _controller.position.maxScrollExtent;
-    final currentScroll = _controller.offset;
-
-    if (currentScroll >= (maxScroll * 0.9)) {
-      widget.onNextPageRequested();
-    }
   }
 }

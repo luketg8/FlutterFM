@@ -13,12 +13,12 @@ class ArtistDetailNotifier extends StateNotifier<AsyncValue<DetailedArtist>> {
       : _artistDetailRepository = read(artistDetailRepositoryProvider),
         super(const AsyncValue.loading());
 
-  Future<void> fetchDetails(String name) async {
+  Future<void> fetchDetails(String mbid) async {
     state =
         AsyncValue.loading(previous: state is AsyncData ? state.asData : null);
 
     state = await AsyncValue.guard(
-      () async => _artistDetailRepository.fetchArtistDetails(name),
+      () async => _artistDetailRepository.fetchArtistDetails(mbid),
     );
   }
 }

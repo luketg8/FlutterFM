@@ -11,11 +11,11 @@ class ArtistDetailRepository {
 
   ArtistDetailRepository(Reader read) : _apiClient = read(apiClientProvider);
 
-  Future<DetailedArtist> fetchArtistDetails(String name) async {
+  Future<DetailedArtist> fetchArtistDetails(String mbid) async {
     final response = await _apiClient.makeRequest(
       {
         'method': 'artist.getInfo',
-        'artist': name,
+        'mbid': mbid,
       },
     );
 

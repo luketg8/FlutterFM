@@ -13,10 +13,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SearchState _$SearchStateFromJson(Map<String, dynamic> json) {
-  return _SearchState.fromJson(json);
-}
-
 /// @nodoc
 class _$SearchStateTearOff {
   const _$SearchStateTearOff();
@@ -28,10 +24,6 @@ class _$SearchStateTearOff {
       nextPageAvailable: nextPageAvailable,
     );
   }
-
-  SearchState fromJson(Map<String, Object?> json) {
-    return SearchState.fromJson(json);
-  }
 }
 
 /// @nodoc
@@ -42,7 +34,6 @@ mixin _$SearchState {
   List<SimpleArtist> get artists => throw _privateConstructorUsedError;
   bool get nextPageAvailable => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SearchStateCopyWith<SearchState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -121,12 +112,9 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_SearchState implements _SearchState {
   _$_SearchState({required this.artists, this.nextPageAvailable = false});
-
-  factory _$_SearchState.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchStateFromJson(json);
 
   @override
   final List<SimpleArtist> artists;
@@ -157,20 +145,12 @@ class _$_SearchState implements _SearchState {
   @override
   _$SearchStateCopyWith<_SearchState> get copyWith =>
       __$SearchStateCopyWithImpl<_SearchState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SearchStateToJson(this);
-  }
 }
 
 abstract class _SearchState implements SearchState {
   factory _SearchState(
       {required List<SimpleArtist> artists,
       bool nextPageAvailable}) = _$_SearchState;
-
-  factory _SearchState.fromJson(Map<String, dynamic> json) =
-      _$_SearchState.fromJson;
 
   @override
   List<SimpleArtist> get artists;
