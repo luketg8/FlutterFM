@@ -10,22 +10,21 @@ class ApiClient {
   ApiClient() {
     _dio = Dio()
       ..options = BaseOptions(
-          baseUrl: 'https://ws.audioscrobbler.com/2.0/',
-          queryParameters: {
-            'api_key': dotenv.env['api_key']!,
-            'format': 'json',
-          });
+        baseUrl: 'https://ws.audioscrobbler.com/2.0/',
+        queryParameters: {
+          'api_key': dotenv.env['api_key']!,
+          'format': 'json',
+        },
+      );
   }
 
-  Future<void> makeRequest(
-    String url,
-    String requestType,
+  Future<Map<String, dynamic>> makeRequest(
+    Map<String, String> queryParams,
   ) async {
     try {
-      final response = await _dio.request(
-        url,
-        options: Options(
-          method: requestType,
+      final response = await _dio.getUri(
+        Uri(
+          queryParameters: queryParams,
         ),
       );
 
