@@ -45,10 +45,17 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   void _debounceListener() {
-    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    if (_debounce?.isActive ?? false) {
+      _debounce!.cancel();
+    }
+
     _debounce = Timer(
       const Duration(milliseconds: 300),
       () {
+        if (_searchTerm == _controller.text || _controller.text.isEmpty) {
+          return;
+        }
+
         _searchTerm = _controller.text;
 
         WidgetsBinding.instance!.addPostFrameCallback(

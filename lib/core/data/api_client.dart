@@ -28,6 +28,10 @@ class ApiClient {
         ),
       );
 
+      if (response.data.containsKey('error')) {
+        throw _resolveFailure(response.data);
+      }
+
       return response.data;
     } on DioError catch (e, _) {
       if ([
@@ -42,16 +46,22 @@ class ApiClient {
         throw const NetworkFailure.other();
       }
 
-      final responseData = e.response!.data;
-
-      if (responseData.containsKey('message') &&
-          responseData['message'] != null) {
-        throw NetworkFailure.withMessage(responseData['message']);
+      throw _resolveFailure(e.response!.data);
+    } catch (e) {
+      if (e is NetworkFailure) {
+        rethrow;
       }
 
       throw const NetworkFailure.other();
-    } catch (e) {
-      throw const NetworkFailure.other();
     }
+  }
+
+  NetworkFailure _resolveFailure(dynamic responseData) {
+    if (responseData.containsKey('message') &&
+        responseData['message'] != null) {
+      return NetworkFailure.withMessage(responseData['message']);
+    }
+
+    return const NetworkFailure.other();
   }
 }

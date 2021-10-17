@@ -43,9 +43,12 @@ class SearchScreen extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 15),
-          SearchBar(
-            onSearched: (term) => searchNotifier.search(term),
+          const SizedBox(height: 15),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: SearchBar(
+              onSearched: (term) => searchNotifier.search(term),
+            ),
           ),
           Expanded(
             child: Builder(
@@ -56,17 +59,24 @@ class SearchScreen extends ConsumerWidget {
 
                 return searchResults.when(
                   data: (results) {
-                    if (!results.hasResults) {
+                    if (results.artists.isEmpty) {
                       return Center(
                         child: Text(context.strings.noSearchResults),
                       );
                     }
 
-                    return _SearchResults(results);
+                    return _SearchResults(
+                      results,
+                      onNextPageRequested: () => searchNotifier.fetchNextPage(),
+                    );
                   },
                   error: (e, __, results) {
                     if (results != null) {
-                      return _SearchResults(results.asData!.value);
+                      return _SearchResults(
+                        results.asData!.value,
+                        onNextPageRequested: () =>
+                            searchNotifier.fetchNextPage(),
+                      );
                     }
 
                     return Text(
@@ -89,20 +99,46 @@ class SearchScreen extends ConsumerWidget {
   }
 }
 
-class _SearchResults extends StatelessWidget {
-  final SearchResults _searchResults;
+class _SearchResults extends StatefulWidget {
+  final SearchState _searchResults;
+  final VoidCallback onNextPageRequested;
 
-  const _SearchResults(this._searchResults, {Key? key}) : super(key: key);
+  const _SearchResults(
+    this._searchResults, {
+    Key? key,
+    required this.onNextPageRequested,
+  }) : super(key: key);
+
+  @override
+  __SearchResultsState createState() => __SearchResultsState();
+}
+
+class __SearchResultsState extends State<_SearchResults> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    _controller.addListener(_paginationListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_paginationListener);
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: _searchResults.resultCount,
-      separatorBuilder: (_, __) => SizedBox(height: 15),
+      controller: _controller,
+      itemCount: widget._searchResults.artists.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 15),
       itemBuilder: (context, idx) {
         //TODO: Pagination support
 
-        final artist = _searchResults.artistmatches.artist[idx];
+        final artist = widget._searchResults.artists[idx];
 
         return ListTile(
           onTap: () => Navigator.of(context).push(
@@ -110,10 +146,23 @@ class _SearchResults extends StatelessWidget {
               builder: (_) => ArtistDetailScreen(artist.name),
             ),
           ),
-          leading: Icon(Icons.music_note),
+          leading: const Icon(Icons.music_note),
           title: Text(artist.name),
         );
       },
     );
+  }
+
+  void _paginationListener() {
+    if (!_controller.hasClients || !widget._searchResults.nextPageAvailable) {
+      return;
+    }
+
+    final maxScroll = _controller.position.maxScrollExtent;
+    final currentScroll = _controller.offset;
+
+    if (currentScroll >= (maxScroll * 0.9)) {
+      widget.onNextPageRequested();
+    }
   }
 }

@@ -11,10 +11,11 @@ class SearchRepository {
 
   SearchRepository(Reader read) : _apiClient = read(apiClientProvider);
 
-  Future<SearchResults> search(String name) async {
+  Future<SearchResults> search(String name, [int page = 1]) async {
     final response = await _apiClient.makeRequest(
       {
         'method': 'artist.search',
+        'page': '$page',
         'artist': name,
       },
     );
