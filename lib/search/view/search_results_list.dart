@@ -41,15 +41,7 @@ class _SearchResultsListState extends State<SearchResultsList> {
       itemBuilder: (context, idx) {
         final artist = widget._searchResults.artists[idx];
 
-        return ListTile(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => ArtistDetailScreen(artist.mbid),
-            ),
-          ),
-          leading: const Icon(Icons.music_note_rounded),
-          title: Text(artist.name),
-        );
+        return _ArtistResultTile(artist);
       },
     );
   }
@@ -65,5 +57,23 @@ class _SearchResultsListState extends State<SearchResultsList> {
     if (currentScroll >= (maxScroll * 0.9)) {
       widget.onNextPageRequested();
     }
+  }
+}
+
+class _ArtistResultTile extends StatelessWidget {
+  final SimpleArtist artist;
+  const _ArtistResultTile(this.artist, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ArtistDetailScreen(artist.mbid),
+        ),
+      ),
+      leading: const Icon(Icons.music_note_rounded),
+      title: Text(artist.name),
+    );
   }
 }

@@ -13,3 +13,9 @@ class LastFMImage with _$LastFMImage {
   factory LastFMImage.fromJson(Map<String, dynamic> json) =>
       _$LastFMImageFromJson(json);
 }
+
+extension ListLastFMImageX on List<LastFMImage> {
+  String? imageUrlForSize(String size) =>
+      firstWhereOrNull((image) => image.size == size && image.text.isNotEmpty)
+          ?.text;
+}
