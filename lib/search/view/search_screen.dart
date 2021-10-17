@@ -38,26 +38,34 @@ class SearchScreen extends ConsumerWidget {
             onSubmitted: (term) => searchNotifier.search(term),
           ),
           Expanded(
-            child: searchResults.when(
-              data: (results) {
-                if (!results.hasResults) {
-                  return Center(
-                    child: Text('No results'),
-                  );
+            child: Builder(
+              builder: (context) {
+                if (searchResults == null) {
+                  return Text(context.strings.searchForName);
                 }
 
-                return _SearchResults(results);
-              },
-              error: (e, __, results) {
-                if (results != null) {
-                  return _SearchResults(results.asData!.value);
-                }
+                return searchResults.when(
+                  data: (results) {
+                    if (!results.hasResults) {
+                      return Center(
+                        child: Text(context.strings.noSearchResults),
+                      );
+                    }
 
-                return Text('Error');
+                    return _SearchResults(results);
+                  },
+                  error: (e, __, results) {
+                    if (results != null) {
+                      return _SearchResults(results.asData!.value);
+                    }
+
+                    return Text('Error');
+                  },
+                  loading: (_) => Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
               },
-              loading: (_) => Center(
-                child: CircularProgressIndicator(),
-              ),
             ),
           ),
         ],

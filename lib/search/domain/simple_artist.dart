@@ -9,10 +9,11 @@ part 'simple_artist.g.dart';
 class SimpleArtist with _$SimpleArtist {
   factory SimpleArtist({
     required String mbid,
+    required String name,
     required String listeners,
     required String url,
     @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-    required List<LastFMImage> images,
+    required List<LastFMImage> image,
   }) = _SimpleArtist;
 
   factory SimpleArtist.fromJson(Map<String, dynamic> json) =>

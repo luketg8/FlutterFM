@@ -19,6 +19,6 @@ class SearchRepository {
       },
     );
 
-    return SearchResults.fromJson(response);
+    return SearchResults.fromJson(response['results']);
   }
 }

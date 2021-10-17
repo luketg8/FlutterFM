@@ -30,3 +30,8 @@ class ArtistResults with _$ArtistResults {
   factory ArtistResults.fromJson(Map<String, dynamic> json) =>
       _$ArtistResultsFromJson(json);
 }
+
+extension SearchResultsX on SearchResults {
+  int get resultCount => artistmatches.artist.length;
+  bool get hasResults => resultCount > 0;
+}

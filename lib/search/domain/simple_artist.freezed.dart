@@ -23,16 +23,18 @@ class _$SimpleArtistTearOff {
 
   _SimpleArtist call(
       {required String mbid,
+      required String name,
       required String listeners,
       required String url,
       @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> images}) {
+      required List<LastFMImage> image}) {
     return _SimpleArtist(
       mbid: mbid,
+      name: name,
       listeners: listeners,
       url: url,
       streamable: streamable,
-      images: images,
+      image: image,
     );
   }
 
@@ -47,11 +49,12 @@ const $SimpleArtist = _$SimpleArtistTearOff();
 /// @nodoc
 mixin _$SimpleArtist {
   String get mbid => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get listeners => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable => throw _privateConstructorUsedError;
-  List<LastFMImage> get images => throw _privateConstructorUsedError;
+  List<LastFMImage> get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,10 +69,11 @@ abstract class $SimpleArtistCopyWith<$Res> {
       _$SimpleArtistCopyWithImpl<$Res>;
   $Res call(
       {String mbid,
+      String name,
       String listeners,
       String url,
       @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
-      List<LastFMImage> images});
+      List<LastFMImage> image});
 }
 
 /// @nodoc
@@ -83,15 +87,20 @@ class _$SimpleArtistCopyWithImpl<$Res> implements $SimpleArtistCopyWith<$Res> {
   @override
   $Res call({
     Object? mbid = freezed,
+    Object? name = freezed,
     Object? listeners = freezed,
     Object? url = freezed,
     Object? streamable = freezed,
-    Object? images = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       mbid: mbid == freezed
           ? _value.mbid
           : mbid // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       listeners: listeners == freezed
           ? _value.listeners
@@ -105,9 +114,9 @@ class _$SimpleArtistCopyWithImpl<$Res> implements $SimpleArtistCopyWith<$Res> {
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
               as bool,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as List<LastFMImage>,
     ));
   }
@@ -122,10 +131,11 @@ abstract class _$SimpleArtistCopyWith<$Res>
   @override
   $Res call(
       {String mbid,
+      String name,
       String listeners,
       String url,
       @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
-      List<LastFMImage> images});
+      List<LastFMImage> image});
 }
 
 /// @nodoc
@@ -141,15 +151,20 @@ class __$SimpleArtistCopyWithImpl<$Res> extends _$SimpleArtistCopyWithImpl<$Res>
   @override
   $Res call({
     Object? mbid = freezed,
+    Object? name = freezed,
     Object? listeners = freezed,
     Object? url = freezed,
     Object? streamable = freezed,
-    Object? images = freezed,
+    Object? image = freezed,
   }) {
     return _then(_SimpleArtist(
       mbid: mbid == freezed
           ? _value.mbid
           : mbid // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       listeners: listeners == freezed
           ? _value.listeners
@@ -163,9 +178,9 @@ class __$SimpleArtistCopyWithImpl<$Res> extends _$SimpleArtistCopyWithImpl<$Res>
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
               as bool,
-      images: images == freezed
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as List<LastFMImage>,
     ));
   }
@@ -176,16 +191,19 @@ class __$SimpleArtistCopyWithImpl<$Res> extends _$SimpleArtistCopyWithImpl<$Res>
 class _$_SimpleArtist implements _SimpleArtist {
   _$_SimpleArtist(
       {required this.mbid,
+      required this.name,
       required this.listeners,
       required this.url,
       @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable,
-      required this.images});
+      required this.image});
 
   factory _$_SimpleArtist.fromJson(Map<String, dynamic> json) =>
       _$$_SimpleArtistFromJson(json);
 
   @override
   final String mbid;
+  @override
+  final String name;
   @override
   final String listeners;
   @override
@@ -194,11 +212,11 @@ class _$_SimpleArtist implements _SimpleArtist {
   @JsonKey(fromJson: ConverterUtils.parseBool)
   final bool streamable;
   @override
-  final List<LastFMImage> images;
+  final List<LastFMImage> image;
 
   @override
   String toString() {
-    return 'SimpleArtist(mbid: $mbid, listeners: $listeners, url: $url, streamable: $streamable, images: $images)';
+    return 'SimpleArtist(mbid: $mbid, name: $name, listeners: $listeners, url: $url, streamable: $streamable, image: $image)';
   }
 
   @override
@@ -207,17 +225,18 @@ class _$_SimpleArtist implements _SimpleArtist {
         (other.runtimeType == runtimeType &&
             other is _SimpleArtist &&
             (identical(other.mbid, mbid) || other.mbid == mbid) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.listeners, listeners) ||
                 other.listeners == listeners) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.streamable, streamable) ||
                 other.streamable == streamable) &&
-            const DeepCollectionEquality().equals(other.images, images));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mbid, listeners, url, streamable,
-      const DeepCollectionEquality().hash(images));
+  int get hashCode => Object.hash(runtimeType, mbid, name, listeners, url,
+      streamable, const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -233,16 +252,19 @@ class _$_SimpleArtist implements _SimpleArtist {
 abstract class _SimpleArtist implements SimpleArtist {
   factory _SimpleArtist(
       {required String mbid,
+      required String name,
       required String listeners,
       required String url,
       @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> images}) = _$_SimpleArtist;
+      required List<LastFMImage> image}) = _$_SimpleArtist;
 
   factory _SimpleArtist.fromJson(Map<String, dynamic> json) =
       _$_SimpleArtist.fromJson;
 
   @override
   String get mbid;
+  @override
+  String get name;
   @override
   String get listeners;
   @override
@@ -251,7 +273,7 @@ abstract class _SimpleArtist implements SimpleArtist {
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable;
   @override
-  List<LastFMImage> get images;
+  List<LastFMImage> get image;
   @override
   @JsonKey(ignore: true)
   _$SimpleArtistCopyWith<_SimpleArtist> get copyWith =>

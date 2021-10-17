@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fm/search/search.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'colors.dart';
 import 'context_extensions.dart';
@@ -25,15 +25,7 @@ class FlutterFMApp extends StatelessWidget {
         primaryColor: FlutterFMColors.lastFmRed,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: SvgPicture.asset(
-            'assets/logo.svg',
-            height: 32,
-          ),
-        ),
-        body: Container(),
-      ),
+      home: SearchScreen(),
     );
   }
 }

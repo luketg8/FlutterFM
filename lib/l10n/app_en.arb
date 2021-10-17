@@ -1,3 +1,6 @@
 {
-  "appTitle": "Flutter FM"
+  "appTitle": "Flutter FM",
+  "searchPrompt": "Search artists",
+  "searchForName": "Search for artists by name",
+  "noSearchResults": "No matching artists"
 }
