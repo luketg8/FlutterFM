@@ -17,14 +17,23 @@ class SimilarArtists extends StatelessWidget {
         itemBuilder: (context, idx) {
           final artist = similarArtists[idx];
           print(artist.mbid);
-          return AspectRatio(
-            aspectRatio: 2,
-            child: Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(artist.name),
-                ],
+          return InkWell(
+            onTap: artist.mbid != null
+                ? () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => ArtistDetailScreen(artist.mbid!),
+                      ),
+                    )
+                : null,
+            child: AspectRatio(
+              aspectRatio: 2,
+              child: Card(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(artist.name),
+                  ],
+                ),
               ),
             ),
           );

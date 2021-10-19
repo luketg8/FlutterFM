@@ -5,21 +5,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'artist_detail_notifier.freezed.dart';
 part 'artist_detail_state.dart';
 
-final artistDetailNotifierProvider = StateNotifierProvider.autoDispose<
-    ArtistDetailNotifier, AsyncValue<ArtistDetailState>>(
-  (ref) => ArtistDetailNotifier(ref.read),
+final artistDetailNotifierProvider = StateNotifierProvider.family
+    .autoDispose<ArtistDetailNotifier, AsyncValue<ArtistDetailState>, String>(
+  (ref, mbid) => ArtistDetailNotifier(ref.read, mbid),
 );
 
 class ArtistDetailNotifier
     extends StateNotifier<AsyncValue<ArtistDetailState>> {
+  final String mbid;
   final ArtistDetailRepository _artistDetailRepository;
-  ArtistDetailNotifier(Reader read)
+  ArtistDetailNotifier(Reader read, this.mbid)
       : _artistDetailRepository = read(artistDetailRepositoryProvider),
         super(const AsyncValue.loading());
 
   AsyncValue<ArtistDetailState>? _latestState;
 
-  Future<void> fetchDetails(String mbid) async {
+  Future<void> fetchDetails() async {
     state = AsyncValue.loading(previous: _latestState);
 
     try {

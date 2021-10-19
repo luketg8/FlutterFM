@@ -16,7 +16,7 @@ class ArtistDetailScreen extends ConsumerStatefulWidget {
 class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
   @override
   void initState() {
-    ref.read(artistDetailNotifierProvider.notifier).fetchDetails(widget.mbid);
+    ref.read(artistDetailNotifierProvider(widget.mbid).notifier).fetchDetails();
 
     super.initState();
   }
@@ -24,9 +24,9 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final artistDetailNotifier =
-        ref.watch(artistDetailNotifierProvider.notifier);
+        ref.watch(artistDetailNotifierProvider(widget.mbid).notifier);
 
-    final artistDetail = ref.watch(artistDetailNotifierProvider);
+    final artistDetail = ref.watch(artistDetailNotifierProvider(widget.mbid));
 
     return artistDetail.when(
       data: (artistDetailState) => ArtistDetails(artistDetailState),
