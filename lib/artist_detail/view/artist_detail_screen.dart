@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
 import 'package:flutter_fm/core/view/context_extensions.dart';
@@ -28,50 +29,61 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
 
     final artistDetail = ref.watch(artistDetailNotifierProvider(widget.mbid));
 
-    return artistDetail.when(
-      data: (artistDetailState) => ArtistDetails(artistDetailState),
-      error: (e, _, artistDetailState) {
-        if (artistDetailState != null) {
-          return ArtistDetails(artistDetailState.asData!.value);
-        }
+    return RefreshIndicator(
+      onRefresh: () => artistDetailNotifier.fetchDetails(),
+      child: artistDetail.when(
+        data: (artistDetailState) => ArtistDetails(artistDetailState),
+        error: (e, _, artistDetailState) {
+          if (artistDetailState != null) {
+            return ArtistDetails(artistDetailState.asData!.value);
+          }
 
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            iconTheme: const IconThemeData(color: Colors.black),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.error_outline,
-                  size: 48,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  ErrorMessageUtils.resolveErrorMessage(context, e),
-                ),
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              iconTheme: const IconThemeData(color: Colors.black),
+              actions: [
+                //Add button to refresh page if using on Web
+                if (kIsWeb)
+                  IconButton(
+                    onPressed: () => artistDetailNotifier.fetchDetails(),
+                    icon: const Icon(Icons.refresh),
+                  ),
               ],
             ),
-          ),
-        );
-      },
-      loading: (artistDetailState) {
-        if (artistDetailState != null) {
-          return ArtistDetails(artistDetailState.asData!.value);
-        }
+            body: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.error_outline,
+                    size: 48,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    ErrorMessageUtils.resolveErrorMessage(context, e),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+        loading: (artistDetailState) {
+          if (artistDetailState != null) {
+            return ArtistDetails(artistDetailState.asData!.value);
+          }
 
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            iconTheme: const IconThemeData(color: Colors.black),
-          ),
-          body: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      },
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              iconTheme: const IconThemeData(color: Colors.black),
+            ),
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        },
+      ),
     );
   }
 }
