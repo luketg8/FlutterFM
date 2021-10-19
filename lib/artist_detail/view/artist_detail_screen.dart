@@ -24,23 +24,30 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = ref.watch(artistDetailNotifierProvider.notifier);
+    final artistDetailNotifier =
+        ref.watch(artistDetailNotifierProvider.notifier);
 
-    final artistDetails = ref.watch(artistDetailNotifierProvider);
+    final artistDetail = ref.watch(artistDetailNotifierProvider);
 
-    return artistDetails.when(
-      data: (artist) => Center(
-        child: ArtistDetails(artist),
-      ),
-      error: (e, _, details) => Scaffold(
-        body: Center(
-          child: Text(
-            ErrorMessageUtils.resolveErrorMessage(context, e),
+    return artistDetail.when(
+      data: (artistDetailState) => ArtistDetails(artistDetailState),
+      error: (e, _, artistDetailState) {
+        if (artistDetailState != null) {
+          return ArtistDetails(artistDetailState.asData!.value);
+        }
+
+        return Scaffold(
+          body: Center(
+            child: Text(
+              ErrorMessageUtils.resolveErrorMessage(context, e),
+            ),
           ),
-        ),
-      ),
-      loading: (details) {
-        //
+        );
+      },
+      loading: (artistDetailState) {
+        if (artistDetailState != null) {
+          return ArtistDetails(artistDetailState.asData!.value);
+        }
 
         return const Scaffold(
           body: Center(
@@ -53,48 +60,59 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
 }
 
 class ArtistDetails extends StatelessWidget {
-  final DetailedArtist artist;
+  final ArtistDetailState artistDetailState;
 
-  const ArtistDetails(this.artist, {Key? key}) : super(key: key);
+  const ArtistDetails(this.artistDetailState, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final artist = artistDetailState.details;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(artist.name),
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        children: [
-          Image.network(
-            artist.image.imageUrlForSize('large')!,
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            height: 50,
-            child: ListView.separated(
-              shrinkWrap: true,
-              clipBehavior: Clip.none,
-              scrollDirection: Axis.horizontal,
-              itemCount: artist.tags.tag.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 5),
-              itemBuilder: (context, idx) => Chip(
-                label: Text(
-                  artist.tags.tag[idx].name,
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          children: [
+            Image.network(
+              artist.image.imageUrlForSize('large')!,
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 50,
+              child: ListView.separated(
+                shrinkWrap: true,
+                clipBehavior: Clip.none,
+                scrollDirection: Axis.horizontal,
+                itemCount: artist.tags.tag.length,
+                separatorBuilder: (_, __) => const SizedBox(width: 5),
+                itemBuilder: (context, idx) => Chip(
+                  label: Text(
+                    artist.tags.tag[idx].name,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            context.strings.artistBio,
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          const SizedBox(height: 5),
-          ExpandableText(
-            artist.bio.content,
-          ),
-        ],
+            const SizedBox(height: 10),
+            Text(
+              context.strings.artistBio,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            const SizedBox(height: 5),
+            ExpandableText(
+              artist.bio.content,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              context.strings.similarArtists(artist.name),
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            const SizedBox(height: 10),
+            SimilarArtists(artistDetailState.similarArtists),
+          ],
+        ),
       ),
     );
   }

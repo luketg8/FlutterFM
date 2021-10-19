@@ -8,5 +8,11 @@
   "searchForName": "Search for artists by name",
   "noSearchResults": "No matching artists",
 
-  "artistBio": "Bio"
+  "artistBio": "Bio",
+  "similarArtists": "Similar artists to {artist}",
+  "@similarArtists": {
+      "placeholders": {
+          "artist": {}
+      }
+  }
 }

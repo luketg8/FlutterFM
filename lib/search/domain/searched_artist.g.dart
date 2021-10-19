@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'simple_artist.dart';
+part of 'searched_artist.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SimpleArtist _$$_SimpleArtistFromJson(Map<String, dynamic> json) =>
-    _$_SimpleArtist(
+_$_SearchedArtist _$$_SearchedArtistFromJson(Map<String, dynamic> json) =>
+    _$_SearchedArtist(
       mbid: json['mbid'] as String,
       name: json['name'] as String,
       listeners: json['listeners'] as String,
@@ -18,7 +18,7 @@ _$_SimpleArtist _$$_SimpleArtistFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_SimpleArtistToJson(_$_SimpleArtist instance) =>
+Map<String, dynamic> _$$_SearchedArtistToJson(_$_SearchedArtist instance) =>
     <String, dynamic>{
       'mbid': instance.mbid,
       'name': instance.name,

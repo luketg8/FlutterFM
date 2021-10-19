@@ -281,7 +281,7 @@ ArtistResults _$ArtistResultsFromJson(Map<String, dynamic> json) {
 class _$ArtistResultsTearOff {
   const _$ArtistResultsTearOff();
 
-  _ArtistResults call({required List<SimpleArtist> artist}) {
+  _ArtistResults call({required List<SearchedArtist> artist}) {
     return _ArtistResults(
       artist: artist,
     );
@@ -297,7 +297,7 @@ const $ArtistResults = _$ArtistResultsTearOff();
 
 /// @nodoc
 mixin _$ArtistResults {
-  List<SimpleArtist> get artist => throw _privateConstructorUsedError;
+  List<SearchedArtist> get artist => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -310,7 +310,7 @@ abstract class $ArtistResultsCopyWith<$Res> {
   factory $ArtistResultsCopyWith(
           ArtistResults value, $Res Function(ArtistResults) then) =
       _$ArtistResultsCopyWithImpl<$Res>;
-  $Res call({List<SimpleArtist> artist});
+  $Res call({List<SearchedArtist> artist});
 }
 
 /// @nodoc
@@ -330,7 +330,7 @@ class _$ArtistResultsCopyWithImpl<$Res>
       artist: artist == freezed
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
-              as List<SimpleArtist>,
+              as List<SearchedArtist>,
     ));
   }
 }
@@ -342,7 +342,7 @@ abstract class _$ArtistResultsCopyWith<$Res>
           _ArtistResults value, $Res Function(_ArtistResults) then) =
       __$ArtistResultsCopyWithImpl<$Res>;
   @override
-  $Res call({List<SimpleArtist> artist});
+  $Res call({List<SearchedArtist> artist});
 }
 
 /// @nodoc
@@ -364,7 +364,7 @@ class __$ArtistResultsCopyWithImpl<$Res>
       artist: artist == freezed
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
-              as List<SimpleArtist>,
+              as List<SearchedArtist>,
     ));
   }
 }
@@ -378,7 +378,7 @@ class _$_ArtistResults implements _ArtistResults {
       _$$_ArtistResultsFromJson(json);
 
   @override
-  final List<SimpleArtist> artist;
+  final List<SearchedArtist> artist;
 
   @override
   String toString() {
@@ -409,14 +409,14 @@ class _$_ArtistResults implements _ArtistResults {
 }
 
 abstract class _ArtistResults implements ArtistResults {
-  factory _ArtistResults({required List<SimpleArtist> artist}) =
+  factory _ArtistResults({required List<SearchedArtist> artist}) =
       _$_ArtistResults;
 
   factory _ArtistResults.fromJson(Map<String, dynamic> json) =
       _$_ArtistResults.fromJson;
 
   @override
-  List<SimpleArtist> get artist;
+  List<SearchedArtist> get artist;
   @override
   @JsonKey(ignore: true)
   _$ArtistResultsCopyWith<_ArtistResults> get copyWith =>

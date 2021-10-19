@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'simple_artist.dart';
+part of 'searched_artist.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,22 +13,22 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SimpleArtist _$SimpleArtistFromJson(Map<String, dynamic> json) {
-  return _SimpleArtist.fromJson(json);
+SearchedArtist _$SearchedArtistFromJson(Map<String, dynamic> json) {
+  return _SearchedArtist.fromJson(json);
 }
 
 /// @nodoc
-class _$SimpleArtistTearOff {
-  const _$SimpleArtistTearOff();
+class _$SearchedArtistTearOff {
+  const _$SearchedArtistTearOff();
 
-  _SimpleArtist call(
+  _SearchedArtist call(
       {required String mbid,
       required String name,
       required String listeners,
       required String url,
       @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
       required List<LastFMImage> image}) {
-    return _SimpleArtist(
+    return _SearchedArtist(
       mbid: mbid,
       name: name,
       listeners: listeners,
@@ -38,16 +38,16 @@ class _$SimpleArtistTearOff {
     );
   }
 
-  SimpleArtist fromJson(Map<String, Object?> json) {
-    return SimpleArtist.fromJson(json);
+  SearchedArtist fromJson(Map<String, Object?> json) {
+    return SearchedArtist.fromJson(json);
   }
 }
 
 /// @nodoc
-const $SimpleArtist = _$SimpleArtistTearOff();
+const $SearchedArtist = _$SearchedArtistTearOff();
 
 /// @nodoc
-mixin _$SimpleArtist {
+mixin _$SearchedArtist {
   String get mbid => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get listeners => throw _privateConstructorUsedError;
@@ -58,15 +58,15 @@ mixin _$SimpleArtist {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SimpleArtistCopyWith<SimpleArtist> get copyWith =>
+  $SearchedArtistCopyWith<SearchedArtist> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SimpleArtistCopyWith<$Res> {
-  factory $SimpleArtistCopyWith(
-          SimpleArtist value, $Res Function(SimpleArtist) then) =
-      _$SimpleArtistCopyWithImpl<$Res>;
+abstract class $SearchedArtistCopyWith<$Res> {
+  factory $SearchedArtistCopyWith(
+          SearchedArtist value, $Res Function(SearchedArtist) then) =
+      _$SearchedArtistCopyWithImpl<$Res>;
   $Res call(
       {String mbid,
       String name,
@@ -77,12 +77,13 @@ abstract class $SimpleArtistCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SimpleArtistCopyWithImpl<$Res> implements $SimpleArtistCopyWith<$Res> {
-  _$SimpleArtistCopyWithImpl(this._value, this._then);
+class _$SearchedArtistCopyWithImpl<$Res>
+    implements $SearchedArtistCopyWith<$Res> {
+  _$SearchedArtistCopyWithImpl(this._value, this._then);
 
-  final SimpleArtist _value;
+  final SearchedArtist _value;
   // ignore: unused_field
-  final $Res Function(SimpleArtist) _then;
+  final $Res Function(SearchedArtist) _then;
 
   @override
   $Res call({
@@ -123,11 +124,11 @@ class _$SimpleArtistCopyWithImpl<$Res> implements $SimpleArtistCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$SimpleArtistCopyWith<$Res>
-    implements $SimpleArtistCopyWith<$Res> {
-  factory _$SimpleArtistCopyWith(
-          _SimpleArtist value, $Res Function(_SimpleArtist) then) =
-      __$SimpleArtistCopyWithImpl<$Res>;
+abstract class _$SearchedArtistCopyWith<$Res>
+    implements $SearchedArtistCopyWith<$Res> {
+  factory _$SearchedArtistCopyWith(
+          _SearchedArtist value, $Res Function(_SearchedArtist) then) =
+      __$SearchedArtistCopyWithImpl<$Res>;
   @override
   $Res call(
       {String mbid,
@@ -139,14 +140,15 @@ abstract class _$SimpleArtistCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SimpleArtistCopyWithImpl<$Res> extends _$SimpleArtistCopyWithImpl<$Res>
-    implements _$SimpleArtistCopyWith<$Res> {
-  __$SimpleArtistCopyWithImpl(
-      _SimpleArtist _value, $Res Function(_SimpleArtist) _then)
-      : super(_value, (v) => _then(v as _SimpleArtist));
+class __$SearchedArtistCopyWithImpl<$Res>
+    extends _$SearchedArtistCopyWithImpl<$Res>
+    implements _$SearchedArtistCopyWith<$Res> {
+  __$SearchedArtistCopyWithImpl(
+      _SearchedArtist _value, $Res Function(_SearchedArtist) _then)
+      : super(_value, (v) => _then(v as _SearchedArtist));
 
   @override
-  _SimpleArtist get _value => super._value as _SimpleArtist;
+  _SearchedArtist get _value => super._value as _SearchedArtist;
 
   @override
   $Res call({
@@ -157,7 +159,7 @@ class __$SimpleArtistCopyWithImpl<$Res> extends _$SimpleArtistCopyWithImpl<$Res>
     Object? streamable = freezed,
     Object? image = freezed,
   }) {
-    return _then(_SimpleArtist(
+    return _then(_SearchedArtist(
       mbid: mbid == freezed
           ? _value.mbid
           : mbid // ignore: cast_nullable_to_non_nullable
@@ -188,8 +190,8 @@ class __$SimpleArtistCopyWithImpl<$Res> extends _$SimpleArtistCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SimpleArtist implements _SimpleArtist {
-  _$_SimpleArtist(
+class _$_SearchedArtist implements _SearchedArtist {
+  _$_SearchedArtist(
       {required this.mbid,
       required this.name,
       required this.listeners,
@@ -197,8 +199,8 @@ class _$_SimpleArtist implements _SimpleArtist {
       @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable,
       required this.image});
 
-  factory _$_SimpleArtist.fromJson(Map<String, dynamic> json) =>
-      _$$_SimpleArtistFromJson(json);
+  factory _$_SearchedArtist.fromJson(Map<String, dynamic> json) =>
+      _$$_SearchedArtistFromJson(json);
 
   @override
   final String mbid;
@@ -216,14 +218,14 @@ class _$_SimpleArtist implements _SimpleArtist {
 
   @override
   String toString() {
-    return 'SimpleArtist(mbid: $mbid, name: $name, listeners: $listeners, url: $url, streamable: $streamable, image: $image)';
+    return 'SearchedArtist(mbid: $mbid, name: $name, listeners: $listeners, url: $url, streamable: $streamable, image: $image)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SimpleArtist &&
+            other is _SearchedArtist &&
             (identical(other.mbid, mbid) || other.mbid == mbid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.listeners, listeners) ||
@@ -240,26 +242,26 @@ class _$_SimpleArtist implements _SimpleArtist {
 
   @JsonKey(ignore: true)
   @override
-  _$SimpleArtistCopyWith<_SimpleArtist> get copyWith =>
-      __$SimpleArtistCopyWithImpl<_SimpleArtist>(this, _$identity);
+  _$SearchedArtistCopyWith<_SearchedArtist> get copyWith =>
+      __$SearchedArtistCopyWithImpl<_SearchedArtist>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SimpleArtistToJson(this);
+    return _$$_SearchedArtistToJson(this);
   }
 }
 
-abstract class _SimpleArtist implements SimpleArtist {
-  factory _SimpleArtist(
+abstract class _SearchedArtist implements SearchedArtist {
+  factory _SearchedArtist(
       {required String mbid,
       required String name,
       required String listeners,
       required String url,
       @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> image}) = _$_SimpleArtist;
+      required List<LastFMImage> image}) = _$_SearchedArtist;
 
-  factory _SimpleArtist.fromJson(Map<String, dynamic> json) =
-      _$_SimpleArtist.fromJson;
+  factory _SearchedArtist.fromJson(Map<String, dynamic> json) =
+      _$_SearchedArtist.fromJson;
 
   @override
   String get mbid;
@@ -276,6 +278,6 @@ abstract class _SimpleArtist implements SimpleArtist {
   List<LastFMImage> get image;
   @override
   @JsonKey(ignore: true)
-  _$SimpleArtistCopyWith<_SimpleArtist> get copyWith =>
+  _$SearchedArtistCopyWith<_SearchedArtist> get copyWith =>
       throw _privateConstructorUsedError;
 }

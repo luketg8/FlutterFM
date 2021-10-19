@@ -1,3 +1,4 @@
+import 'package:flutter_fm/search/domain/searched_artist.dart';
 import 'package:flutter_fm/search/search.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,7 +22,7 @@ class SearchNotifier extends StateNotifier<AsyncValue<SearchState>?> {
   AsyncValue<SearchState>? _latestResults;
 
   Future<void> search(String name) async {
-    state = AsyncValue.loading(previous: _latestResults?.asData);
+    state = AsyncValue.loading(previous: _latestResults);
 
     try {
       final results = await _searchRepository.search(name);

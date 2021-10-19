@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_SearchResultsToJson(_$_SearchResults instance) =>
 _$_ArtistResults _$$_ArtistResultsFromJson(Map<String, dynamic> json) =>
     _$_ArtistResults(
       artist: (json['artist'] as List<dynamic>)
-          .map((e) => SimpleArtist.fromJson(e as Map<String, dynamic>))
+          .map((e) => SearchedArtist.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

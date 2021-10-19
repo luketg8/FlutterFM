@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
+import 'package:flutter_fm/search/domain/searched_artist.dart';
 import 'package:flutter_fm/search/search.dart';
 
 class SearchResultsList extends StatefulWidget {
@@ -61,7 +62,7 @@ class _SearchResultsListState extends State<SearchResultsList> {
 }
 
 class _ArtistResultTile extends StatelessWidget {
-  final SimpleArtist artist;
+  final SearchedArtist artist;
   const _ArtistResultTile(this.artist, {Key? key}) : super(key: key);
 
   @override

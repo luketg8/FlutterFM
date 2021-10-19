@@ -1,5 +1,5 @@
 import 'package:flutter_fm/core/domain/converter_utils.dart';
-import 'package:flutter_fm/search/search.dart';
+import 'package:flutter_fm/search/domain/searched_artist.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'search_results.freezed.dart';
@@ -24,7 +24,7 @@ class SearchResults with _$SearchResults {
 @freezed
 class ArtistResults with _$ArtistResults {
   factory ArtistResults({
-    required List<SimpleArtist> artist,
+    required List<SearchedArtist> artist,
   }) = _ArtistResults;
 
   factory ArtistResults.fromJson(Map<String, dynamic> json) =>

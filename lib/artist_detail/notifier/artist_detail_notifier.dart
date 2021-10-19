@@ -1,24 +1,45 @@
-import 'package:flutter_fm/artist_detail/data/artist_detail_repository.dart';
-import 'package:flutter_fm/artist_detail/domain/detailed_artist.dart';
+import 'package:flutter_fm/artist_detail/artist_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'artist_detail_notifier.freezed.dart';
+part 'artist_detail_state.dart';
 
 final artistDetailNotifierProvider = StateNotifierProvider.autoDispose<
-    ArtistDetailNotifier, AsyncValue<DetailedArtist>>(
+    ArtistDetailNotifier, AsyncValue<ArtistDetailState>>(
   (ref) => ArtistDetailNotifier(ref.read),
 );
 
-class ArtistDetailNotifier extends StateNotifier<AsyncValue<DetailedArtist>> {
+class ArtistDetailNotifier
+    extends StateNotifier<AsyncValue<ArtistDetailState>> {
   final ArtistDetailRepository _artistDetailRepository;
   ArtistDetailNotifier(Reader read)
       : _artistDetailRepository = read(artistDetailRepositoryProvider),
         super(const AsyncValue.loading());
 
-  Future<void> fetchDetails(String mbid) async {
-    state =
-        AsyncValue.loading(previous: state is AsyncData ? state.asData : null);
+  AsyncValue<ArtistDetailState>? _latestState;
 
-    state = await AsyncValue.guard(
-      () async => _artistDetailRepository.fetchArtistDetails(mbid),
-    );
+  Future<void> fetchDetails(String mbid) async {
+    state = AsyncValue.loading(previous: _latestState);
+
+    try {
+      final details = await _artistDetailRepository.fetchArtistDetails(mbid);
+      final similarArtists =
+          await _artistDetailRepository.fetchSimilarArtists(mbid);
+
+      _latestState = AsyncValue.data(
+        ArtistDetailState(
+          details: details,
+          similarArtists: similarArtists,
+        ),
+      );
+
+      state = _latestState!;
+    } catch (e) {
+      state = AsyncValue.error(
+        e,
+        previous: _latestState?.asData,
+      );
+    }
   }
 }

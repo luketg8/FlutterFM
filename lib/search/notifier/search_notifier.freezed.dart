@@ -18,7 +18,7 @@ class _$SearchStateTearOff {
   const _$SearchStateTearOff();
 
   _SearchState call(
-      {required List<SimpleArtist> artists, bool nextPageAvailable = false}) {
+      {required List<SearchedArtist> artists, bool nextPageAvailable = false}) {
     return _SearchState(
       artists: artists,
       nextPageAvailable: nextPageAvailable,
@@ -31,7 +31,7 @@ const $SearchState = _$SearchStateTearOff();
 
 /// @nodoc
 mixin _$SearchState {
-  List<SimpleArtist> get artists => throw _privateConstructorUsedError;
+  List<SearchedArtist> get artists => throw _privateConstructorUsedError;
   bool get nextPageAvailable => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $SearchStateCopyWith<$Res> {
   factory $SearchStateCopyWith(
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res>;
-  $Res call({List<SimpleArtist> artists, bool nextPageAvailable});
+  $Res call({List<SearchedArtist> artists, bool nextPageAvailable});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$SearchStateCopyWithImpl<$Res> implements $SearchStateCopyWith<$Res> {
       artists: artists == freezed
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as List<SimpleArtist>,
+              as List<SearchedArtist>,
       nextPageAvailable: nextPageAvailable == freezed
           ? _value.nextPageAvailable
           : nextPageAvailable // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$SearchStateCopyWith<$Res>
           _SearchState value, $Res Function(_SearchState) then) =
       __$SearchStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<SimpleArtist> artists, bool nextPageAvailable});
+  $Res call({List<SearchedArtist> artists, bool nextPageAvailable});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$SearchStateCopyWithImpl<$Res> extends _$SearchStateCopyWithImpl<$Res>
       artists: artists == freezed
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
-              as List<SimpleArtist>,
+              as List<SearchedArtist>,
       nextPageAvailable: nextPageAvailable == freezed
           ? _value.nextPageAvailable
           : nextPageAvailable // ignore: cast_nullable_to_non_nullable
@@ -117,7 +117,7 @@ class _$_SearchState implements _SearchState {
   _$_SearchState({required this.artists, this.nextPageAvailable = false});
 
   @override
-  final List<SimpleArtist> artists;
+  final List<SearchedArtist> artists;
   @JsonKey(defaultValue: false)
   @override
   final bool nextPageAvailable;
@@ -149,11 +149,11 @@ class _$_SearchState implements _SearchState {
 
 abstract class _SearchState implements SearchState {
   factory _SearchState(
-      {required List<SimpleArtist> artists,
+      {required List<SearchedArtist> artists,
       bool nextPageAvailable}) = _$_SearchState;
 
   @override
-  List<SimpleArtist> get artists;
+  List<SearchedArtist> get artists;
   @override
   bool get nextPageAvailable;
   @override
