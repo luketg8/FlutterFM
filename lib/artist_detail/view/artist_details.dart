@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
 import 'package:flutter_fm/core/view/context_extensions.dart';
@@ -5,17 +6,27 @@ import 'package:flutter_fm/core/view/text_utils.dart';
 
 class ArtistDetails extends StatelessWidget {
   final ArtistDetailState artistDetailState;
+  final VoidCallback onRefreshed;
 
-  const ArtistDetails(this.artistDetailState, {Key? key}) : super(key: key);
+  const ArtistDetails(
+    this.artistDetailState, {
+    Key? key,
+    required this.onRefreshed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final artist = artistDetailState.details;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(artist.name),
-      ),
+      appBar: AppBar(title: Text(artist.name), actions: [
+        //Add button to refresh page if using on Web
+        if (kIsWeb)
+          IconButton(
+            onPressed: onRefreshed,
+            icon: const Icon(Icons.refresh),
+          ),
+      ]),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15),

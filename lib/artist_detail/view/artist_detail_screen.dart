@@ -28,16 +28,23 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
     final artistDetail = ref.watch(artistDetailNotifierProvider(widget.mbid));
 
     return RefreshIndicator(
-      onRefresh: () => artistDetailNotifier.fetchDetails(),
+      onRefresh: _refreshArtistDetails,
       child: artistDetail.when(
-        data: (artistDetailState) => ArtistDetails(artistDetailState),
+        data: (artistDetailState) => ArtistDetails(
+          artistDetailState,
+          onRefreshed: _refreshArtistDetails,
+        ),
         error: (e, _, artistDetailState) {
           if (artistDetailState != null) {
-            return ArtistDetails(artistDetailState.asData!.value);
+            return ArtistDetails(
+              artistDetailState.asData!.value,
+              onRefreshed: _refreshArtistDetails,
+            );
           }
 
           return _RefreshableScaffold(
-            Center(
+            onRefreshed: _refreshArtistDetails,
+            body: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -52,23 +59,19 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
                 ],
               ),
             ),
-            appBarActions: [
-              //Add button to refresh page if using on Web
-              if (kIsWeb)
-                IconButton(
-                  onPressed: () => artistDetailNotifier.fetchDetails(),
-                  icon: const Icon(Icons.refresh),
-                ),
-            ],
           );
         },
         loading: (artistDetailState) {
           if (artistDetailState != null) {
-            return ArtistDetails(artistDetailState.asData!.value);
+            return ArtistDetails(
+              artistDetailState.asData!.value,
+              onRefreshed: _refreshArtistDetails,
+            );
           }
 
-          return const _RefreshableScaffold(
-            Center(
+          return _RefreshableScaffold(
+            onRefreshed: _refreshArtistDetails,
+            body: const Center(
               child: CircularProgressIndicator(),
             ),
           );
@@ -76,14 +79,21 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
       ),
     );
   }
+
+  Future<void> _refreshArtistDetails() => ref
+      .read(artistDetailNotifierProvider(widget.mbid).notifier)
+      .fetchDetails();
 }
 
 //Make refreshable scaffold to ensure that pull to refresh always works
 class _RefreshableScaffold extends StatelessWidget {
+  final VoidCallback onRefreshed;
   final Widget body;
-  final List<Widget>? appBarActions;
-  const _RefreshableScaffold(this.body, {Key? key, this.appBarActions})
-      : super(key: key);
+  const _RefreshableScaffold({
+    Key? key,
+    required this.onRefreshed,
+    required this.body,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +106,14 @@ class _RefreshableScaffold extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             iconTheme: const IconThemeData(color: Colors.black),
-            actions: appBarActions,
+            actions: [
+              //Add button to refresh page if using on Web
+              if (kIsWeb)
+                IconButton(
+                  onPressed: onRefreshed,
+                  icon: const Icon(Icons.refresh),
+                ),
+            ],
           ),
           body: body,
         ),
