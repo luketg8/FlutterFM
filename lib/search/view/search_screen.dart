@@ -53,14 +53,36 @@ class SearchScreen extends ConsumerWidget {
             child: Builder(
               builder: (context) {
                 if (searchResults == null) {
-                  return Text(context.strings.searchForName);
+                  return Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.music_note,
+                          size: 48,
+                        ),
+                        const SizedBox(height: 5),
+                        Text(context.strings.searchForName),
+                      ],
+                    ),
+                  );
                 }
 
                 return searchResults.when(
                   data: (results) {
                     if (results.artists.isEmpty) {
                       return Center(
-                        child: Text(context.strings.noSearchResults),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.error_outline,
+                              size: 48,
+                            ),
+                            const SizedBox(height: 5),
+                            Text(context.strings.noSearchResults),
+                          ],
+                        ),
                       );
                     }
 

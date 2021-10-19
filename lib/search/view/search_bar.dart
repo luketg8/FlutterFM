@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_fm/core/view/colors.dart';
 import 'package:flutter_fm/core/view/context_extensions.dart';
 
 class SearchBar extends StatefulWidget {
@@ -39,10 +40,10 @@ class _SearchBarState extends State<SearchBar> {
     return TextField(
       controller: _controller,
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.search_rounded),
+        prefixIcon:
+            const Icon(Icons.search_rounded, color: FlutterFMColors.lastFmRed),
         hintText: context.strings.searchPrompt,
       ),
-      onSubmitted: (term) => widget.onSearched(term),
     );
   }
 

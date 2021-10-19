@@ -21,9 +21,14 @@ class FlutterFMApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           color: Colors.black,
+          elevation: 0,
         ),
         primaryColor: FlutterFMColors.lastFmRed,
+        iconTheme: const IconThemeData(color: Colors.black),
         scaffoldBackgroundColor: Colors.white,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: FlutterFMColors.lastFmRed,
+        ),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
           focusedBorder: OutlineInputBorder(),

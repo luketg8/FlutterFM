@@ -25,14 +25,12 @@ class _$SimilarArtistTearOff {
       {required String? mbid,
       required String name,
       required String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> image}) {
+      @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable}) {
     return _SimilarArtist(
       mbid: mbid,
       name: name,
       url: url,
       streamable: streamable,
-      image: image,
     );
   }
 
@@ -51,7 +49,6 @@ mixin _$SimilarArtist {
   String get url => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable => throw _privateConstructorUsedError;
-  List<LastFMImage> get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,8 +65,7 @@ abstract class $SimilarArtistCopyWith<$Res> {
       {String? mbid,
       String name,
       String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
-      List<LastFMImage> image});
+      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable});
 }
 
 /// @nodoc
@@ -87,7 +83,6 @@ class _$SimilarArtistCopyWithImpl<$Res>
     Object? name = freezed,
     Object? url = freezed,
     Object? streamable = freezed,
-    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       mbid: mbid == freezed
@@ -106,10 +101,6 @@ class _$SimilarArtistCopyWithImpl<$Res>
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
               as bool,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as List<LastFMImage>,
     ));
   }
 }
@@ -125,8 +116,7 @@ abstract class _$SimilarArtistCopyWith<$Res>
       {String? mbid,
       String name,
       String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
-      List<LastFMImage> image});
+      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable});
 }
 
 /// @nodoc
@@ -146,7 +136,6 @@ class __$SimilarArtistCopyWithImpl<$Res>
     Object? name = freezed,
     Object? url = freezed,
     Object? streamable = freezed,
-    Object? image = freezed,
   }) {
     return _then(_SimilarArtist(
       mbid: mbid == freezed
@@ -165,10 +154,6 @@ class __$SimilarArtistCopyWithImpl<$Res>
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
               as bool,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as List<LastFMImage>,
     ));
   }
 }
@@ -180,8 +165,7 @@ class _$_SimilarArtist implements _SimilarArtist {
       {required this.mbid,
       required this.name,
       required this.url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable,
-      required this.image});
+      @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable});
 
   factory _$_SimilarArtist.fromJson(Map<String, dynamic> json) =>
       _$$_SimilarArtistFromJson(json);
@@ -195,12 +179,10 @@ class _$_SimilarArtist implements _SimilarArtist {
   @override
   @JsonKey(fromJson: ConverterUtils.parseBool)
   final bool streamable;
-  @override
-  final List<LastFMImage> image;
 
   @override
   String toString() {
-    return 'SimilarArtist(mbid: $mbid, name: $name, url: $url, streamable: $streamable, image: $image)';
+    return 'SimilarArtist(mbid: $mbid, name: $name, url: $url, streamable: $streamable)';
   }
 
   @override
@@ -212,13 +194,11 @@ class _$_SimilarArtist implements _SimilarArtist {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.streamable, streamable) ||
-                other.streamable == streamable) &&
-            const DeepCollectionEquality().equals(other.image, image));
+                other.streamable == streamable));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mbid, name, url, streamable,
-      const DeepCollectionEquality().hash(image));
+  int get hashCode => Object.hash(runtimeType, mbid, name, url, streamable);
 
   @JsonKey(ignore: true)
   @override
@@ -236,8 +216,8 @@ abstract class _SimilarArtist implements SimilarArtist {
       {required String? mbid,
       required String name,
       required String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> image}) = _$_SimilarArtist;
+      @JsonKey(fromJson: ConverterUtils.parseBool)
+          required bool streamable}) = _$_SimilarArtist;
 
   factory _SimilarArtist.fromJson(Map<String, dynamic> json) =
       _$_SimilarArtist.fromJson;
@@ -251,8 +231,6 @@ abstract class _SimilarArtist implements SimilarArtist {
   @override
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable;
-  @override
-  List<LastFMImage> get image;
   @override
   @JsonKey(ignore: true)
   _$SimilarArtistCopyWith<_SimilarArtist> get copyWith =>

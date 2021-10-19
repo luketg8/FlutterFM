@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
-import 'package:flutter_fm/core/domain/lastfm_image.dart';
 import 'package:flutter_fm/core/view/context_extensions.dart';
 import 'package:flutter_fm/core/view/error_message_utils.dart';
 import 'package:flutter_fm/core/view/text_utils.dart';
@@ -37,9 +36,23 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
         }
 
         return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            iconTheme: const IconThemeData(color: Colors.black),
+          ),
           body: Center(
-            child: Text(
-              ErrorMessageUtils.resolveErrorMessage(context, e),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.error_outline,
+                  size: 48,
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  ErrorMessageUtils.resolveErrorMessage(context, e),
+                ),
+              ],
             ),
           ),
         );
@@ -49,8 +62,12 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
           return ArtistDetails(artistDetailState.asData!.value);
         }
 
-        return const Scaffold(
-          body: Center(
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            iconTheme: const IconThemeData(color: Colors.black),
+          ),
+          body: const Center(
             child: CircularProgressIndicator(),
           ),
         );
@@ -76,9 +93,7 @@ class ArtistDetails extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           children: [
-            Image.network(
-              artist.image.imageUrlForSize('large')!,
-            ),
+            //
             const SizedBox(height: 10),
             SizedBox(
               height: 50,

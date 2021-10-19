@@ -28,7 +28,6 @@ class _$DetailedArtistTearOff {
       required ArtistStats stats,
       required ArtistBio bio,
       required ArtistTags tags,
-      required List<LastFMImage> image,
       @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
       @JsonKey(fromJson: ConverterUtils.parseBool) required bool ontour}) {
     return _DetailedArtist(
@@ -38,7 +37,6 @@ class _$DetailedArtistTearOff {
       stats: stats,
       bio: bio,
       tags: tags,
-      image: image,
       streamable: streamable,
       ontour: ontour,
     );
@@ -60,7 +58,6 @@ mixin _$DetailedArtist {
   ArtistStats get stats => throw _privateConstructorUsedError;
   ArtistBio get bio => throw _privateConstructorUsedError;
   ArtistTags get tags => throw _privateConstructorUsedError;
-  List<LastFMImage> get image => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ConverterUtils.parseBool)
@@ -84,7 +81,6 @@ abstract class $DetailedArtistCopyWith<$Res> {
       ArtistStats stats,
       ArtistBio bio,
       ArtistTags tags,
-      List<LastFMImage> image,
       @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
       @JsonKey(fromJson: ConverterUtils.parseBool) bool ontour});
 
@@ -110,7 +106,6 @@ class _$DetailedArtistCopyWithImpl<$Res>
     Object? stats = freezed,
     Object? bio = freezed,
     Object? tags = freezed,
-    Object? image = freezed,
     Object? streamable = freezed,
     Object? ontour = freezed,
   }) {
@@ -139,10 +134,6 @@ class _$DetailedArtistCopyWithImpl<$Res>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as ArtistTags,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as List<LastFMImage>,
       streamable: streamable == freezed
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
@@ -190,7 +181,6 @@ abstract class _$DetailedArtistCopyWith<$Res>
       ArtistStats stats,
       ArtistBio bio,
       ArtistTags tags,
-      List<LastFMImage> image,
       @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
       @JsonKey(fromJson: ConverterUtils.parseBool) bool ontour});
 
@@ -221,7 +211,6 @@ class __$DetailedArtistCopyWithImpl<$Res>
     Object? stats = freezed,
     Object? bio = freezed,
     Object? tags = freezed,
-    Object? image = freezed,
     Object? streamable = freezed,
     Object? ontour = freezed,
   }) {
@@ -250,10 +239,6 @@ class __$DetailedArtistCopyWithImpl<$Res>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as ArtistTags,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as List<LastFMImage>,
       streamable: streamable == freezed
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
@@ -276,7 +261,6 @@ class _$_DetailedArtist implements _DetailedArtist {
       required this.stats,
       required this.bio,
       required this.tags,
-      required this.image,
       @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable,
       @JsonKey(fromJson: ConverterUtils.parseBool) required this.ontour});
 
@@ -296,8 +280,6 @@ class _$_DetailedArtist implements _DetailedArtist {
   @override
   final ArtistTags tags;
   @override
-  final List<LastFMImage> image;
-  @override
   @JsonKey(fromJson: ConverterUtils.parseBool)
   final bool streamable;
   @override
@@ -306,7 +288,7 @@ class _$_DetailedArtist implements _DetailedArtist {
 
   @override
   String toString() {
-    return 'DetailedArtist(mbid: $mbid, name: $name, url: $url, stats: $stats, bio: $bio, tags: $tags, image: $image, streamable: $streamable, ontour: $ontour)';
+    return 'DetailedArtist(mbid: $mbid, name: $name, url: $url, stats: $stats, bio: $bio, tags: $tags, streamable: $streamable, ontour: $ontour)';
   }
 
   @override
@@ -320,15 +302,14 @@ class _$_DetailedArtist implements _DetailedArtist {
             (identical(other.stats, stats) || other.stats == stats) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.tags, tags) || other.tags == tags) &&
-            const DeepCollectionEquality().equals(other.image, image) &&
             (identical(other.streamable, streamable) ||
                 other.streamable == streamable) &&
             (identical(other.ontour, ontour) || other.ontour == ontour));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mbid, name, url, stats, bio,
-      tags, const DeepCollectionEquality().hash(image), streamable, ontour);
+  int get hashCode => Object.hash(
+      runtimeType, mbid, name, url, stats, bio, tags, streamable, ontour);
 
   @JsonKey(ignore: true)
   @override
@@ -349,7 +330,6 @@ abstract class _DetailedArtist implements DetailedArtist {
           required ArtistStats stats,
           required ArtistBio bio,
           required ArtistTags tags,
-          required List<LastFMImage> image,
           @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
           @JsonKey(fromJson: ConverterUtils.parseBool) required bool ontour}) =
       _$_DetailedArtist;
@@ -369,8 +349,6 @@ abstract class _DetailedArtist implements DetailedArtist {
   ArtistBio get bio;
   @override
   ArtistTags get tags;
-  @override
-  List<LastFMImage> get image;
   @override
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable;

@@ -14,9 +14,6 @@ _$_DetailedArtist _$$_DetailedArtistFromJson(Map<String, dynamic> json) =>
       stats: ArtistStats.fromJson(json['stats'] as Map<String, dynamic>),
       bio: ArtistBio.fromJson(json['bio'] as Map<String, dynamic>),
       tags: ArtistTags.fromJson(json['tags'] as Map<String, dynamic>),
-      image: (json['image'] as List<dynamic>)
-          .map((e) => LastFMImage.fromJson(e as Map<String, dynamic>))
-          .toList(),
       streamable: ConverterUtils.parseBool(json['streamable'] as String),
       ontour: ConverterUtils.parseBool(json['ontour'] as String),
     );
@@ -29,7 +26,6 @@ Map<String, dynamic> _$$_DetailedArtistToJson(_$_DetailedArtist instance) =>
       'stats': instance.stats.toJson(),
       'bio': instance.bio.toJson(),
       'tags': instance.tags.toJson(),
-      'image': instance.image.map((e) => e.toJson()).toList(),
       'streamable': instance.streamable,
       'ontour': instance.ontour,
     };

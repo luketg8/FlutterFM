@@ -22,7 +22,7 @@ class SearchNotifier extends StateNotifier<AsyncValue<SearchState>?> {
   AsyncValue<SearchState>? _latestResults;
 
   Future<void> search(String name) async {
-    state = AsyncValue.loading(previous: _latestResults);
+    state = const AsyncValue.loading();
 
     try {
       final results = await _searchRepository.search(name);

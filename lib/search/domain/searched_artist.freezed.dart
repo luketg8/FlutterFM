@@ -26,15 +26,13 @@ class _$SearchedArtistTearOff {
       required String name,
       required String listeners,
       required String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> image}) {
+      @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable}) {
     return _SearchedArtist(
       mbid: mbid,
       name: name,
       listeners: listeners,
       url: url,
       streamable: streamable,
-      image: image,
     );
   }
 
@@ -54,7 +52,6 @@ mixin _$SearchedArtist {
   String get url => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable => throw _privateConstructorUsedError;
-  List<LastFMImage> get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,8 +69,7 @@ abstract class $SearchedArtistCopyWith<$Res> {
       String name,
       String listeners,
       String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
-      List<LastFMImage> image});
+      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable});
 }
 
 /// @nodoc
@@ -92,7 +88,6 @@ class _$SearchedArtistCopyWithImpl<$Res>
     Object? listeners = freezed,
     Object? url = freezed,
     Object? streamable = freezed,
-    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       mbid: mbid == freezed
@@ -115,10 +110,6 @@ class _$SearchedArtistCopyWithImpl<$Res>
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
               as bool,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as List<LastFMImage>,
     ));
   }
 }
@@ -135,8 +126,7 @@ abstract class _$SearchedArtistCopyWith<$Res>
       String name,
       String listeners,
       String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable,
-      List<LastFMImage> image});
+      @JsonKey(fromJson: ConverterUtils.parseBool) bool streamable});
 }
 
 /// @nodoc
@@ -157,7 +147,6 @@ class __$SearchedArtistCopyWithImpl<$Res>
     Object? listeners = freezed,
     Object? url = freezed,
     Object? streamable = freezed,
-    Object? image = freezed,
   }) {
     return _then(_SearchedArtist(
       mbid: mbid == freezed
@@ -180,10 +169,6 @@ class __$SearchedArtistCopyWithImpl<$Res>
           ? _value.streamable
           : streamable // ignore: cast_nullable_to_non_nullable
               as bool,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as List<LastFMImage>,
     ));
   }
 }
@@ -196,8 +181,7 @@ class _$_SearchedArtist implements _SearchedArtist {
       required this.name,
       required this.listeners,
       required this.url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable,
-      required this.image});
+      @JsonKey(fromJson: ConverterUtils.parseBool) required this.streamable});
 
   factory _$_SearchedArtist.fromJson(Map<String, dynamic> json) =>
       _$$_SearchedArtistFromJson(json);
@@ -213,12 +197,10 @@ class _$_SearchedArtist implements _SearchedArtist {
   @override
   @JsonKey(fromJson: ConverterUtils.parseBool)
   final bool streamable;
-  @override
-  final List<LastFMImage> image;
 
   @override
   String toString() {
-    return 'SearchedArtist(mbid: $mbid, name: $name, listeners: $listeners, url: $url, streamable: $streamable, image: $image)';
+    return 'SearchedArtist(mbid: $mbid, name: $name, listeners: $listeners, url: $url, streamable: $streamable)';
   }
 
   @override
@@ -232,13 +214,12 @@ class _$_SearchedArtist implements _SearchedArtist {
                 other.listeners == listeners) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.streamable, streamable) ||
-                other.streamable == streamable) &&
-            const DeepCollectionEquality().equals(other.image, image));
+                other.streamable == streamable));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mbid, name, listeners, url,
-      streamable, const DeepCollectionEquality().hash(image));
+  int get hashCode =>
+      Object.hash(runtimeType, mbid, name, listeners, url, streamable);
 
   @JsonKey(ignore: true)
   @override
@@ -257,8 +238,8 @@ abstract class _SearchedArtist implements SearchedArtist {
       required String name,
       required String listeners,
       required String url,
-      @JsonKey(fromJson: ConverterUtils.parseBool) required bool streamable,
-      required List<LastFMImage> image}) = _$_SearchedArtist;
+      @JsonKey(fromJson: ConverterUtils.parseBool)
+          required bool streamable}) = _$_SearchedArtist;
 
   factory _SearchedArtist.fromJson(Map<String, dynamic> json) =
       _$_SearchedArtist.fromJson;
@@ -274,8 +255,6 @@ abstract class _SearchedArtist implements SearchedArtist {
   @override
   @JsonKey(fromJson: ConverterUtils.parseBool)
   bool get streamable;
-  @override
-  List<LastFMImage> get image;
   @override
   @JsonKey(ignore: true)
   _$SearchedArtistCopyWith<_SearchedArtist> get copyWith =>
