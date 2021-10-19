@@ -8,7 +8,7 @@ class SimilarArtists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 75,
       child: ListView.separated(
         clipBehavior: Clip.none,
         scrollDirection: Axis.horizontal,
@@ -16,8 +16,8 @@ class SimilarArtists extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(width: 10),
         itemBuilder: (context, idx) {
           final artist = similarArtists[idx];
-          print(artist.mbid);
-          return InkWell(
+
+          return GestureDetector(
             onTap: artist.mbid != null
                 ? () => Navigator.of(context).push(
                       MaterialPageRoute(
@@ -25,13 +25,24 @@ class SimilarArtists extends StatelessWidget {
                       ),
                     )
                 : null,
-            child: AspectRatio(
-              aspectRatio: 2,
-              child: Card(
-                child: Column(
+            child: Card(
+              child: Container(
+                constraints: const BoxConstraints(minWidth: 50, maxWidth: 150),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(artist.name),
+                    const Icon(Icons.music_note),
+                    const SizedBox(width: 5),
+                    Flexible(
+                      child: Text(
+                        artist.name,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 ),
               ),
