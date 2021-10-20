@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fm/core/domain/network_failure.dart';
 import 'package:flutter_fm/core/view/context_extensions.dart';
 import 'package:flutter_fm/core/view/error_message_utils.dart';
 import 'package:flutter_fm/search/search.dart';
@@ -24,7 +25,7 @@ class SearchScreen extends ConsumerWidget {
                 content: Text(
                   ErrorMessageUtils.resolveErrorMessage(
                     context,
-                    state.error,
+                    state.error as NetworkFailure,
                   ),
                 ),
               ),
@@ -103,7 +104,7 @@ class SearchScreen extends ConsumerWidget {
                     return Text(
                       ErrorMessageUtils.resolveErrorMessage(
                         context,
-                        e,
+                        e as NetworkFailure,
                       ),
                     );
                   },

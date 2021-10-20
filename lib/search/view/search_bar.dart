@@ -54,6 +54,7 @@ class _SearchBarState extends State<SearchBar> {
     }
 
     _debounce = Timer(
+      //Only allow searches every 300ms to prevent getting rate limited
       const Duration(milliseconds: 300),
       () {
         if (_searchTerm == _controller.text || _controller.text.isEmpty) {

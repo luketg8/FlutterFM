@@ -1,4 +1,5 @@
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
+import 'package:flutter_fm/core/domain/network_failure.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -36,7 +37,7 @@ class ArtistDetailNotifier
       );
 
       state = _latestState!;
-    } catch (e) {
+    } on NetworkFailure catch (e) {
       state = AsyncValue.error(
         e,
         previous: _latestState?.asData,

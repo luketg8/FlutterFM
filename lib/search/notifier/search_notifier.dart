@@ -1,3 +1,4 @@
+import 'package:flutter_fm/core/domain/network_failure.dart';
 import 'package:flutter_fm/search/domain/searched_artist.dart';
 import 'package:flutter_fm/search/search.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,7 +70,7 @@ class SearchNotifier extends StateNotifier<AsyncValue<SearchState>?> {
       );
 
       state = _latestResults;
-    } catch (e) {
+    } on NetworkFailure catch (e) {
       state = AsyncValue.error(
         e,
         previous: _latestResults?.asData,

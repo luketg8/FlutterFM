@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
+import 'package:flutter_fm/core/domain/network_failure.dart';
 import 'package:flutter_fm/core/view/error_message_utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,10 +23,27 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final artistDetailNotifier =
-        ref.watch(artistDetailNotifierProvider(widget.mbid).notifier);
-
     final artistDetail = ref.watch(artistDetailNotifierProvider(widget.mbid));
+
+    ref.listen(
+      artistDetailNotifierProvider(widget.mbid),
+      (state) {
+        if (state is AsyncError) {
+          ScaffoldMessenger.of(context)
+            ..removeCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(
+                  ErrorMessageUtils.resolveErrorMessage(
+                    context,
+                    state.error as NetworkFailure,
+                  ),
+                ),
+              ),
+            );
+        }
+      },
+    );
 
     return RefreshIndicator(
       onRefresh: _refreshArtistDetails,
@@ -54,7 +72,8 @@ class _ArtistDetailScreenState extends ConsumerState<ArtistDetailScreen> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    ErrorMessageUtils.resolveErrorMessage(context, e),
+                    ErrorMessageUtils.resolveErrorMessage(
+                        context, e as NetworkFailure),
                   ),
                 ],
               ),
