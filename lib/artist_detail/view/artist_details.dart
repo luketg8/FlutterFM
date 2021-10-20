@@ -47,6 +47,25 @@ class ArtistDetails extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
+            SizedBox(
+              height: 50,
+              child: Center(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  clipBehavior: Clip.none,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: artist.tags.tag.length,
+                  separatorBuilder: (_, __) => const SizedBox(width: 5),
+                  itemBuilder: (context, idx) => Chip(
+                    label: Text(
+                      artist.tags.tag[idx].name,
+                      maxLines: 2,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Divider(height: 10),
             Text(
               context.strings.artistBio,
               style: Theme.of(context).textTheme.headline6,
@@ -54,23 +73,6 @@ class ArtistDetails extends StatelessWidget {
             const SizedBox(height: 5),
             ExpandableText(
               artist.bio.content,
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 50,
-              child: ListView.separated(
-                shrinkWrap: true,
-                clipBehavior: Clip.none,
-                scrollDirection: Axis.horizontal,
-                itemCount: artist.tags.tag.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 5),
-                itemBuilder: (context, idx) => Chip(
-                  label: Text(
-                    artist.tags.tag[idx].name,
-                    maxLines: 2,
-                  ),
-                ),
-              ),
             ),
             const SizedBox(height: 10),
             Text(
@@ -103,12 +105,12 @@ class _HeadlineStat extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.subtitle2,
+          style: Theme.of(context).textTheme.caption,
         ),
         const SizedBox(height: 5),
         Text(
           stat,
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.subtitle2,
         ),
       ],
     );

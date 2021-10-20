@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_fm/core/domain/network_failure.dart';
@@ -35,10 +37,11 @@ class ApiClient {
       return response.data;
     } on DioError catch (e, _) {
       if ([
-        DioErrorType.receiveTimeout,
-        DioErrorType.connectTimeout,
-        DioErrorType.sendTimeout,
-      ].contains(e.type)) {
+            DioErrorType.receiveTimeout,
+            DioErrorType.connectTimeout,
+            DioErrorType.sendTimeout,
+          ].contains(e.type) ||
+          e.error is SocketException) {
         throw const NetworkFailure.noConnection();
       }
 
