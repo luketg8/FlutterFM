@@ -7,9 +7,17 @@
   "searchPrompt": "Search artists",
   "searchForName": "Search for artists by name",
   "noSearchResults": "No matching artists",
+  "searchArtistListeners": "{listeners} listeners",
+  "@searchArtistListeners": {
+      "placeholders": {
+          "listeners": {}
+      }
+  },
 
+  "artistListeners": "Listeners",
+  "artistPlayCount": "Play Count",
   "artistBio": "Bio",
-  "similarArtists": "Similar artists to {artist}",
+  "similarArtists": "Artists similar to {artist}",
   "@similarArtists": {
       "placeholders": {
           "artist": {}

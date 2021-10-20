@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fm/artist_detail/artist_detail.dart';
+import 'package:flutter_fm/core/view/context_extensions.dart';
 import 'package:flutter_fm/search/domain/searched_artist.dart';
 import 'package:flutter_fm/search/search.dart';
 
@@ -75,6 +76,7 @@ class _ArtistResultTile extends StatelessWidget {
       ),
       leading: const Icon(Icons.music_note_rounded),
       title: Text(artist.name),
+      subtitle: Text(context.strings.searchArtistListeners(artist.listeners)),
     );
   }
 }

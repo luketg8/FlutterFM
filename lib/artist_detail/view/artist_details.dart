@@ -31,7 +31,30 @@ class ArtistDetails extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           children: [
-            //
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _HeadlineStat(
+                  title: context.strings.artistListeners,
+                  stat: artist.stats.listeners,
+                ),
+                const SizedBox(width: 30),
+                _HeadlineStat(
+                  title: context.strings.artistPlayCount,
+                  stat: artist.stats.playcount,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              context.strings.artistBio,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            const SizedBox(height: 5),
+            ExpandableText(
+              artist.bio.content,
+            ),
             const SizedBox(height: 10),
             SizedBox(
               height: 50,
@@ -44,18 +67,10 @@ class ArtistDetails extends StatelessWidget {
                 itemBuilder: (context, idx) => Chip(
                   label: Text(
                     artist.tags.tag[idx].name,
+                    maxLines: 2,
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              context.strings.artistBio,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            const SizedBox(height: 5),
-            ExpandableText(
-              artist.bio.content,
             ),
             const SizedBox(height: 10),
             Text(
@@ -67,6 +82,35 @@ class ArtistDetails extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _HeadlineStat extends StatelessWidget {
+  final String title;
+  final String stat;
+
+  const _HeadlineStat({
+    Key? key,
+    required this.title,
+    required this.stat,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+        const SizedBox(height: 5),
+        Text(
+          stat,
+          style: Theme.of(context).textTheme.caption,
+        ),
+      ],
     );
   }
 }
